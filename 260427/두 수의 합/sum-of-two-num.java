@@ -11,38 +11,31 @@ public class Main {
 		int N = Integer.parseInt(st.nextToken());
 		int K = Integer.parseInt(st.nextToken());
 
-		int[] num = new int[N];
+		Map<Integer, Integer> map = new HashMap<>();
 		st = new StringTokenizer(br.readLine());
 
 		for (int i = 0; i < N; i++) {
-			num[i] = Integer.parseInt(st.nextToken());
+			int key = Integer.parseInt(st.nextToken());
+			map.put(key, map.getOrDefault(key, 0) + 1);
 		}
-		
-		Arrays.sort(num);
-		
-		int s = 0;
-		int e = N-1;
 		int count = 0;
-		while(s < e) {
-			
-			if(num[s] + num[e] == K) {
-				count++;
-				s++;
-				e--;
+		for (Integer k : map.keySet()) {
+
+			if (map.keySet().contains(K - k)) {
+
+				int v1 = map.get(k);
+				int v2 = map.get(K - k);
+				if (K - k == k) {
+					count += v1 * (v2 - 1);
+				} else {
+
+					count += map.get(k) * map.get(K - k);
+				}
 			}
-			else if(num[s] + num[e] > K) {
-				e--;
-			}else {
-				s++;
-			}
-			
-			
-			
+
 		}
-		
-		System.out.println(count);
-		
-		
+
+		System.out.println(count / 2);
 
 	}
 }
