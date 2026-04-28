@@ -29,7 +29,7 @@ public class Main {
 		
 		int min = 1_000_000_000;
 		
-		for(int i = 1;i <= N - K;i++) {
+		for(int i = 1;i <= N - K + 1;i++) {
 			
 			min = Math.min(min, prefixsum[i + K-1]-prefixsum[i-1]);
 			
