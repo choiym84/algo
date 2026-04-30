@@ -38,25 +38,18 @@ public class Main {
 		int now = 0;
 
 		for (int i = 1; i < 200001; i++) {
+		    int prev = now;
+		    now += check[i];
 
-			now += check[i];
-
-			if (now > max) {
-				max = now;
-				cnt = 1;
-			} else if (now == max) {
-				if (check[i] == 1) {
-					cnt++;
-				}
-			}
-
+		    if (now > max) {
+		        max = now;
+		        cnt = 1;
+		    } else if (prev < max && now == max) {
+		        cnt++;
+		    }
 		}
 
-		if (max == 1) {
-			System.out.println(1);
-		} else {
-			System.out.println(cnt);
-		}
+		System.out.println(max);
 
 	}
 }
